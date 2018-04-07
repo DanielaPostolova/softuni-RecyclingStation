@@ -25,8 +25,6 @@ namespace RecyclingStation.WasteDisposal.Models.Factories
                 ?? throw new ArgumentException();
 
             return this.componentContext.ResolveNamed<IWaste>(typeOfWaste, new NamedParameter("name", name), new NamedParameter("volumePerKg", volumePerKg), new NamedParameter("weight", weight));
-
-            //return this.componentContext.ResolveNamed<IWaste>(typeOfWaste);
         }
     }
 }

@@ -13,7 +13,6 @@ namespace RecyclingStation
             var engine = container.Resolve<IEngine>();
 
             engine.Start();
-
         }
 
     }

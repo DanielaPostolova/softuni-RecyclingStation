@@ -50,12 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ManagementRequirements.cs" />
     <Compile Include="WasteDisposal\AutofacConfig.cs" />
     <Compile Include="WasteDisposal\ConsoleRenderer.cs" />
     <Compile Include="WasteDisposal\Engine.cs" />
     <Compile Include="WasteDisposal\Interfaces\ICommand.cs" />
     <Compile Include="WasteDisposal\Interfaces\IConsoleRenderer.cs" />
     <Compile Include="WasteDisposal\Interfaces\IWasteFactory.cs" />
+    <Compile Include="WasteDisposal\Models\Commands\ChangeManagementRequirementCommand.cs" />
     <Compile Include="WasteDisposal\Models\Commands\ProcessGarbageCommand.cs" />
     <Compile Include="WasteDisposal\Models\Commands\StatusCommand.cs" />
     <Compile Include="WasteDisposal\Interfaces\IEngine.cs" />

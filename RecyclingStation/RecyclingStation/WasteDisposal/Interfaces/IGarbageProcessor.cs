@@ -1,4 +1,4 @@
-﻿namespace RecyclingStation.WasteDisposal.Interfaces
+﻿    namespace RecyclingStation.WasteDisposal.Interfaces
 {
     using System;
 
@@ -21,5 +21,7 @@
         ///  <exception cref="ArgumentException">In case passed in garbage does not contain an attribute derived from the Disposable Attribute class, throws an Argument Exception.</exception>
         /// <returns>Returns an object of type IProcessingData containing all information about the result of processing the passed in IWaste object.</returns>
         IProcessingData ProcessWaste(IWaste garbage);
+
+        ManagementRequirements CurrentRequirement { get; set; }
     }
 }

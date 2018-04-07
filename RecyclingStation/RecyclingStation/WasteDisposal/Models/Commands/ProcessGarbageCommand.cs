@@ -32,13 +32,15 @@ namespace RecyclingStation.WasteDisposal.Models.Commands
 
                 string typeOfWaste = args[3];
 
-
-
                 var waste = this.wasteFactory.GetWaste(typeOfWaste, wasteName, wasteVolumePerKg, wasteWeight);
-                this.garbageProcessor.ProcessWaste(waste);
 
+                this.garbageProcessor.ProcessWaste(waste);
                 result = $"{wasteWeight:0.00} kg of {wasteName} successfully processed!";
 
+            }
+            catch (InvalidOperationException e)
+            {
+                return e.Message;
             }
             catch (Exception e)
             {
