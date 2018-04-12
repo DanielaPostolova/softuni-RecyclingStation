@@ -14,6 +14,8 @@
         /// </summary>
         IStrategyHolder StrategyHolder { get;}
 
+        IRestriction Restriction { get; set; }
+
         /// <summary>
         /// Identifies and executes a disposal strategy from the strategies contained in the StrategyHolder based on the passed in garbage's Disposable Attribute.
         /// </summary>
@@ -22,6 +24,5 @@
         /// <returns>Returns an object of type IProcessingData containing all information about the result of processing the passed in IWaste object.</returns>
         IProcessingData ProcessWaste(IWaste garbage);
 
-        ManagementRequirements CurrentRequirement { get; set; }
     }
 }

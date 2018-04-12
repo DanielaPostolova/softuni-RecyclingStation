@@ -14,12 +14,11 @@ namespace RecyclingStation.WasteDisposal
         {
             this.StrategyHolder = strategyHolder;
             this.currentData = new ProcessingData(0, 0);
-            this.CurrentRequirement = ManagementRequirements.None;
         }
 
         public IStrategyHolder StrategyHolder { get; }
 
-        public ManagementRequirements CurrentRequirement { get; set; }
+        public IRestriction Restriction{get; set; }
         public IProcessingData CurrentData
             => new ProcessingData(currentData.EnergyBalance, currentData.CapitalBalance);
 
@@ -43,19 +42,14 @@ namespace RecyclingStation.WasteDisposal
                     "The passed in garbage does not implement a supported Disposable Strategy Attribute.");
             }
 
-            if (garbageType.Name.Contains(this.CurrentRequirement.ToString()))
+            if (this.Restriction != null)
             {
-                var capitalBorderProp = (double)garbageType.GetProperty("CapitalLowBorder").GetValue(null, null);
-                if (this.currentData.CapitalBalance < capitalBorderProp)
-                {
-                    throw new InvalidOperationException("Processing Denied!");
-                }
+                bool notEnoughtResourses = (this.currentData.EnergyBalance < this.Restriction.EnergyLowBorder ||
+                                           this.currentData.CapitalBalance < this.Restriction.CapitalLowBorder) &&
+                                               garbageType.Name.Contains(this.Restriction.RestrictionType);
 
-                var energyBorderProp = (double)garbageType.GetProperty("EnergyLowBorder").GetValue(null, null);
-                if (this.currentData.EnergyBalance < energyBorderProp)
-                {
+                if (notEnoughtResourses)
                     throw new InvalidOperationException("Processing Denied!");
-                }
             }
 
             var resultData = currentStrategy.ProcessGarbage(garbage);
@@ -70,4 +64,5 @@ namespace RecyclingStation.WasteDisposal
             this.currentData.EnergyBalance += newData.EnergyBalance;
         }
     }
+    
 }

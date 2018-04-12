@@ -50,12 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ManagementRequirements.cs" />
     <Compile Include="WasteDisposal\AutofacConfig.cs" />
     <Compile Include="WasteDisposal\ConsoleRenderer.cs" />
     <Compile Include="WasteDisposal\Engine.cs" />
     <Compile Include="WasteDisposal\Interfaces\ICommand.cs" />
     <Compile Include="WasteDisposal\Interfaces\IConsoleRenderer.cs" />
+    <Compile Include="WasteDisposal\Interfaces\IRestriction.cs" />
     <Compile Include="WasteDisposal\Interfaces\IWasteFactory.cs" />
     <Compile Include="WasteDisposal\Models\Commands\ChangeManagementRequirementCommand.cs" />
     <Compile Include="WasteDisposal\Models\Commands\ProcessGarbageCommand.cs" />
@@ -83,6 +83,7 @@
     <Compile Include="WasteDisposal\Models\TypesOfWaste\BurnableGarbage.cs" />
     <Compile Include="WasteDisposal\Models\TypesOfWaste\RecyclableGarbage.cs" />
     <Compile Include="WasteDisposal\Models\TypesOfWaste\StorableGarbage.cs" />
+    <Compile Include="WasteDisposal\Restriction.cs" />
     <Compile Include="WasteDisposal\StrategyHolder.cs" />
   </ItemGroup>
   <ItemGroup>

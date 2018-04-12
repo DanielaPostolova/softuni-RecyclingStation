@@ -25,21 +25,9 @@ namespace RecyclingStation.WasteDisposal.Models.Commands
             double energyLowBorder = double.Parse(args[0]);
             double capitalLowBorder = double.Parse(args[1]);
             string garbage = args[2];
-
-            var garbageType = Assembly.GetAssembly(typeof(IWaste))
-                .GetTypes()
-                .FirstOrDefault(x => x.GetInterfaces().Contains(typeof(IWaste)) && x.Name.Contains(garbage));
-            
-            garbageType.GetProperty("CapitalLowBorder")?.SetValue(null, capitalLowBorder);
-            garbageType.GetProperty("EnergyLowBorder")?.SetValue(null, energyLowBorder);
             
             var processor = this.componentContext.Resolve<IGarbageProcessor>();
-            var enumValues = Enum.GetValues(typeof(ManagementRequirements));
-            foreach (var enumValue in enumValues)
-            {
-                if (enumValue.ToString().Contains(garbage))
-                    processor.CurrentRequirement = (ManagementRequirements) enumValue;
-            }
+            processor.Restriction = new Restriction(garbage, energyLowBorder, capitalLowBorder);
 
             return "Management requirement changed!";
         }
